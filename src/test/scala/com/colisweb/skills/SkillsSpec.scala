@@ -1,18 +1,40 @@
 package com.colisweb.skills
 
+import com.colisweb.Approbation
+import com.github.writethemfirst.approvals.utils.FunctionUtils
 import org.scalatest.prop.TableDrivenPropertyChecks._
 import org.scalatest.prop.TableFor3
-import org.scalatest.{FlatSpec, Matchers}
+import scala.collection.JavaConverters._
 
-final class SkillsSpec extends FlatSpec with Matchers {
+final class SkillsSpec extends Approbation {
 
   import Skills._
   import SkillsSpec._
 
-  "skills" should "test" in {
+  "skills" should "test" in { approver =>
     forAll(data) { (l1, l2, `match`) =>
       isThereAMatchBetween(l1, l2) should (equal(isThereAMatchBetween(l2, l1)) and equal(`match`))
     }
+  }
+
+  "skills" should "match" in { approver =>
+    val possibleConstraints = List[Set[SkillConstraint]](
+      Set(Owned(freshSkill)),
+      Set(Required(hotSkill)),
+      Set(Forbidden(freshSkill)),
+      Set(Required(freshSkill)),
+      Set(Required(freshSkill), Required(hotSkill)),
+      Set(Owned(freshSkill), Owned(hotSkill)),
+      Set(Owned(hotSkill), Required(freshSkill)),
+      Set.empty
+    )
+
+    val combinations = FunctionUtils.applyCombinations[Set[SkillConstraint], Set[SkillConstraint]](
+      possibleConstraints.asJava,
+      possibleConstraints.asJava,
+      Skills.isThereAMatchBetween
+    )
+    approver.verify(combinations)
   }
 
 }
