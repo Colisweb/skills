@@ -64,3 +64,6 @@ project/plugins/project/
 
 ### Scala ###
 *.log
+
+# approvals
+*.received
