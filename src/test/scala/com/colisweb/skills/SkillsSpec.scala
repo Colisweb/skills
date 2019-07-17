@@ -11,7 +11,7 @@ final class SkillsSpec extends Approbation {
   import Skills._
   import SkillsSpec._
 
-  "skills" should "test" in { approver =>
+  "skills" should "test" in { _ =>
     forAll(data) { (l1, l2, `match`) =>
       isThereAMatchBetween(l1, l2) should (equal(isThereAMatchBetween(l2, l1)) and equal(`match`))
     }
