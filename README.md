@@ -1,6 +1,6 @@
 # skills
 
-PS: This repository mirrors another on [Github](http)
+PS: This repository mirrors another on [Github](https://github.com/colisweb/skills)
 
 [![pipeline status](https://gitlab.com/colisweb-open-source/skills/badges/master/pipeline.svg)](https://gitlab.com/colisweb-open-source/skills/commits/master)  [![coverage report](https://gitlab.com/colisweb-open-source/skills/badges/master/coverage.svg)](https://gitlab.com/colisweb-open-source/skills/commits/master)
 
