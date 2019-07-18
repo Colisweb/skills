@@ -28,5 +28,5 @@ cache:
     - sbt-cache
 
 before_script:
-- gpg --import  <(echo "$GITLAB_PGP_PRIVATE_KEY")
-- eval "$(gpg -q --decrypt secrets-env.sh.secret)"
+  - gpg --import  <(echo "$GITLAB_PGP_PRIVATE_KEY")
+  - eval "$(gpg -q --decrypt secrets-env.sh.secret)"
