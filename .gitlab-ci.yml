@@ -5,15 +5,11 @@ stages:
 
 compile scala sources:
   stage: build
-  tags:
-    - aws
   script:
     - sbt test:compile
 
 sbt test:
   stage: test
-  tags:
-    - aws
   script:
     - sbt coverage test coverageReport
 
@@ -21,12 +17,10 @@ publish on bintray:
   stage: publish
   # TODO Add `only: master` once the process succeed
   when: manual
-  tags:
-    - aws
   script:
     - sbt -Dbintray.user=gitlab-ci -Dbintray.pass=$BINTRAY_API_KEY publish
 
-image: colisweb/scala-sbt-gke:adoptjdk11-1.2.8-8.11.3-9.2.7.0
+image: hseeberger/scala-sbt:11.0.3_1.2.8_2.12.8
 variables:
   SBT_OPTS: "-Dsbt.global.base=sbt-cache/sbtboot -Dsbt.boot.directory=sbt-cache/boot -Dsbt.ivy.home=sbt-cache/ivy"
   COURSIER_CACHE: "sbt-cache/coursier"
@@ -37,5 +31,14 @@ cache:
 
 before_script:
 - gpg --import  <(echo "$GITLAB_PGP_PRIVATE_KEY")
+- apt-get install git
+- apt-get install -y gawk
+- apt-get install make
+- git clone https://github.com/sobolevn/git-secret.git git-secret
+- cd git-secret && make build
+- PREFIX="/usr/local" make install
+- cd .. && rm -Rf git-secret
+- git secret whoknows
+- git secret list
 - git secret reveal
 - source secrets-env.sh

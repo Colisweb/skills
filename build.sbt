@@ -1,6 +1,6 @@
 name := "skills"
 organization := "com.colisweb"
-version := "0.1"
+version := "1.0.0"
 scalaVersion := "2.12.8"
 
 scalafmtOnCompile := true
@@ -11,7 +11,6 @@ coverageEnabled := true
 
 resolvers += Resolver.bintrayRepo("writethemfirst", "maven")
 
-bintrayOrganization := Some("colisweb")
 
 libraryDependencies ++= Seq(
   "org.scalactic" %% "scalactic" % "3.0.8",
@@ -23,3 +22,6 @@ libraryDependencies ++= Seq(
 // Uncomment the next 2 lines for auto-approbation
 //ThisBuild / Test / fork := true
 //ThisBuild / Test / javaOptions += "-DAUTO_APPROVE=true"
+
+bintrayOrganization := Some("colisweb")
+licenses += ("Apache-2.0", url("http://www.apache.org/licenses/"))
