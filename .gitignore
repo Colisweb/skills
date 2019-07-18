@@ -67,3 +67,5 @@ project/plugins/project/
 
 # approvals
 *.received
+.gitsecret/keys/random_seed
+secrets-env.sh
