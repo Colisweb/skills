@@ -31,4 +31,4 @@ cache:
 
 before_script:
 - gpg --import  <(echo "$GITLAB_PGP_PRIVATE_KEY")
-- gpg -q --decrypt secrets-env.sh.secret | source
+- eval "$(gpg -q --decrypt secrets-env.sh.secret)"
