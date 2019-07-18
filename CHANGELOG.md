@@ -5,3 +5,5 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 More infos about this file : http://keepachangelog.com/
 
 ## [Unreleased] - no_due_date
+### Added
+- First implementation of skill constraints
