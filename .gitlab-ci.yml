@@ -15,8 +15,6 @@ sbt test:
 
 publish on bintray:
   stage: publish
-  only:
-    - master
   script:
     - sbt -Dbintray.user=gitlab-ci -Dbintray.pass=$BINTRAY_API_KEY publish
 
