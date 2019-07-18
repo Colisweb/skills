@@ -15,8 +15,8 @@ sbt test:
 
 publish on bintray:
   stage: publish
-  # TODO Add `only: master` once the process succeed
-  when: manual
+  only:
+    - master
   script:
     - sbt -Dbintray.user=gitlab-ci -Dbintray.pass=$BINTRAY_API_KEY publish
 
