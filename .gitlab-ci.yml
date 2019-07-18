@@ -1,6 +1,7 @@
 stages:
   - build
   - test
+  - publish
 
 compile scala sources:
   stage: build
@@ -12,6 +13,13 @@ sbt test:
   script:
     - sbt coverage test coverageReport
 
+publish on bintray:
+  stage: publish
+  # TODO Add `only: master` once the process succeed
+  when: manual
+  script:
+    - sbt -Dbintray.user=gitlab-ci -Dbintray.pass=$BINTRAY_API_KEY publish
+
 image: hseeberger/scala-sbt:11.0.3_1.2.8_2.12.8
 variables:
   SBT_OPTS: "-Dsbt.global.base=sbt-cache/sbtboot -Dsbt.boot.directory=sbt-cache/boot -Dsbt.ivy.home=sbt-cache/ivy"
@@ -20,3 +28,8 @@ cache:
   key: "sbt-$CI_BUILD_REF_NAME"
   paths:
     - sbt-cache
+
+before_script:
+- gpg --import  <(echo "$GITLAB_PGP_PRIVATE_KEY")
+- git secret reveal
+- source secrets-env.sh
