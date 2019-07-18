@@ -20,7 +20,7 @@ publish on bintray:
   script:
     - sbt -Dbintray.user=gitlab-ci -Dbintray.pass=$BINTRAY_API_KEY publish
 
-image: hseeberger/scala-sbt:11.0.3_1.2.8_2.12.8
+image: 949316342391.dkr.ecr.eu-west-1.amazonaws.com/toutatis-infra/docker-infra-builder:master
 variables:
   SBT_OPTS: "-Dsbt.global.base=sbt-cache/sbtboot -Dsbt.boot.directory=sbt-cache/boot -Dsbt.ivy.home=sbt-cache/ivy"
   COURSIER_CACHE: "sbt-cache/coursier"
