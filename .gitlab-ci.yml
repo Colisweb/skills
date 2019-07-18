@@ -38,6 +38,7 @@ before_script:
 - cd git-secret && make build
 - PREFIX="/usr/local" make install
 - cd .. && rm -Rf git-secret
+- ls
 - git secret whoknows
 - git secret list
 - git secret reveal
