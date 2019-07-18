@@ -31,8 +31,8 @@ cache:
 
 before_script:
 - gpg --import  <(echo "$GITLAB_PGP_PRIVATE_KEY")
-- apk --no-cache add git
-- apk --no-cache add --virtual build-dependencies make
+- apt-get install git
+- apt-get install make
 - git clone https://github.com/sobolevn/git-secret.git git-secret
 - cd git-secret && make build
 - PREFIX="/usr/local" make install
