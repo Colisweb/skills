@@ -32,6 +32,7 @@ cache:
 before_script:
 - gpg --import  <(echo "$GITLAB_PGP_PRIVATE_KEY")
 - apt-get install git
+- apt-get install gawk
 - apt-get install make
 - git clone https://github.com/sobolevn/git-secret.git git-secret
 - cd git-secret && make build
