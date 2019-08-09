@@ -1,6 +1,7 @@
+import ReleaseTransformations._
+
 name := "skills"
 organization := "com.colisweb"
-version := "1.0.1-SNAPSHOT"
 scalaVersion := "2.12.8"
 
 scalafmtOnCompile := true
@@ -22,3 +23,15 @@ libraryDependencies ++= Seq(
 
 bintrayOrganization := Some("colisweb")
 licenses += ("Apache-2.0", url("http://www.apache.org/licenses/"))
+
+ThisBuild / releaseProcess := Seq[ReleaseStep](
+  checkSnapshotDependencies,
+  inquireVersions,          
+  setReleaseVersion,        
+  commitReleaseVersion,
+  tagRelease, 
+  releaseStepTask(publish),
+  setNextVersion,           
+  commitNextVersion,        
+  pushChanges
+)
