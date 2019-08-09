@@ -18,7 +18,7 @@ publish on bintray:
   only:
     - master
   script:
-    - sbt -Dbintray.user=gitlab-ci -Dbintray.pass=$BINTRAY_API_KEY publish
+    - sbt -Dbintray.user=gitlab-ci -Dbintray.pass=$BINTRAY_API_KEY "release skip-tests with-defaults"
 
 image: hseeberger/scala-sbt:11.0.3_1.2.8_2.12.8
 variables:
