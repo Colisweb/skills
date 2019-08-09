@@ -23,15 +23,3 @@ libraryDependencies ++= Seq(
 
 bintrayOrganization := Some("colisweb")
 licenses += ("Apache-2.0", url("http://www.apache.org/licenses/"))
-
-ThisBuild / releaseProcess := Seq[ReleaseStep](
-  checkSnapshotDependencies,
-  inquireVersions,          
-  setReleaseVersion,        
-  commitReleaseVersion,
-  tagRelease, 
-  releaseStepTask(publish),
-  setNextVersion,           
-  commitNextVersion,        
-  pushChanges
-)
