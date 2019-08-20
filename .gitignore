@@ -69,3 +69,5 @@ project/plugins/project/
 *.received
 .gitsecret/keys/random_seed
 secrets-env.sh
+
+sbt-cache
