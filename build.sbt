@@ -1,8 +1,8 @@
-import ReleaseTransformations._
-
 name := "skills"
 organization := "com.colisweb"
 scalaVersion := "2.12.8"
+
+releaseCommitMessage := s"[ci skip] Setting version to ${(version in ThisBuild).value}"
 
 scalafmtOnCompile := true
 scalafmtCheck := true
