@@ -1,12 +1,6 @@
 stages:
-  - build
   - test
   - publish
-
-compile scala sources:
-  stage: build
-  script:
-    - sbt test:compile
 
 sbt test:
   stage: test
