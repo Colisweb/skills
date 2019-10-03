@@ -21,21 +21,21 @@ final class SkillsSpec extends Approbation {
   }
 
   "skillConstraint" should "match" in { _ =>
-    val skillList: List[SkillConstraint] = List(SkillOwned("owned skill"), SkillForbidden("forbidden skill"))
-    skillList.head.tag.toString() shouldBe "owned skill"
+    val skillList: List[SkillConstraint] = List(OwnedSkill("owned skill"), SkillForbidden("forbidden skill"))
+    skillList.head.tag.value shouldBe "owned skill"
     skillList.tail.head.`type` shouldBe Forbidden
 
   }
 
   "skills" should "match" in { approver =>
     val possibleConstraints = List[Set[SkillConstraint]](
-      Set(SkillOwned(freshSkill)),
-      Set(SkillRequired(hotSkill)),
+      Set(OwnedSkill(freshSkill)),
+      Set(RequiredSkill(hotSkill)),
       Set(SkillForbidden(freshSkill)),
-      Set(SkillRequired(freshSkill)),
-      Set(SkillRequired(freshSkill), SkillRequired(hotSkill)),
-      Set(SkillOwned(freshSkill), SkillOwned(hotSkill)),
-      Set(SkillOwned(hotSkill), SkillRequired(freshSkill)),
+      Set(RequiredSkill(freshSkill)),
+      Set(RequiredSkill(freshSkill), RequiredSkill(hotSkill)),
+      Set(OwnedSkill(freshSkill), OwnedSkill(hotSkill)),
+      Set(OwnedSkill(hotSkill), RequiredSkill(freshSkill)),
       Set.empty
     )
 
@@ -61,49 +61,49 @@ object SkillsSpec {
   val data: TableFor3[List[SkillConstraint], List[SkillConstraint], Boolean] =
     Table(
       ("l1", "l2", "match"),
-      (List(SkillOwned(freshSkill)), List(SkillRequired(hotSkill)), false),
+      (List(OwnedSkill(freshSkill)), List(RequiredSkill(hotSkill)), false),
       (Nil, Nil, true),
-      (List(SkillRequired(freshSkill)), Nil, false),
+      (List(RequiredSkill(freshSkill)), Nil, false),
       (List(SkillForbidden(freshSkill)), Nil, true),
-      (List(SkillRequired(freshSkill)), List(SkillOwned(freshSkill)), true),
+      (List(RequiredSkill(freshSkill)), List(OwnedSkill(freshSkill)), true),
       (
-        List(SkillRequired(freshSkill), SkillRequired(hotSkill)),
-        List(SkillOwned(freshSkill), SkillOwned(hotSkill)),
+        List(RequiredSkill(freshSkill), RequiredSkill(hotSkill)),
+        List(OwnedSkill(freshSkill), OwnedSkill(hotSkill)),
         true
       ),
-      (List(SkillRequired(freshSkill), SkillRequired(hotSkill)), List(SkillOwned(freshSkill)), false),
-      (List(SkillRequired(freshSkill)), List(SkillRequired(freshSkill)), true),
-      (List(SkillRequired(freshSkill)), List(SkillRequired(freshSkill), SkillRequired(hotSkill)), false),
+      (List(RequiredSkill(freshSkill), RequiredSkill(hotSkill)), List(OwnedSkill(freshSkill)), false),
+      (List(RequiredSkill(freshSkill)), List(RequiredSkill(freshSkill)), true),
+      (List(RequiredSkill(freshSkill)), List(RequiredSkill(freshSkill), RequiredSkill(hotSkill)), false),
       (
-        List(SkillOwned(hotSkill), SkillRequired(freshSkill)),
-        List(SkillRequired(freshSkill), SkillRequired(hotSkill)),
+        List(OwnedSkill(hotSkill), RequiredSkill(freshSkill)),
+        List(RequiredSkill(freshSkill), RequiredSkill(hotSkill)),
         true
       ),
-      (List(SkillForbidden(freshSkill)), List(SkillOwned(freshSkill)), false),
-      (List(SkillForbidden(freshSkill), SkillForbidden(hotSkill)), List(SkillOwned(freshSkill)), false),
+      (List(SkillForbidden(freshSkill)), List(OwnedSkill(freshSkill)), false),
+      (List(SkillForbidden(freshSkill), SkillForbidden(hotSkill)), List(OwnedSkill(freshSkill)), false),
       (
         List(SkillForbidden(freshSkill), SkillForbidden(drinkableSkill)),
-        List(SkillOwned(hotSkill), SkillOwned(eatableSkill)),
+        List(OwnedSkill(hotSkill), OwnedSkill(eatableSkill)),
         true
       ),
       (List(SkillForbidden(freshSkill)), List(SkillForbidden(freshSkill)), true),
       (
-        List(SkillRequired(hotSkill), SkillRequired(eatableSkill), SkillForbidden(freshSkill)),
-        List(SkillOwned(hotSkill), SkillOwned(eatableSkill), SkillOwned(freshSkill)),
+        List(RequiredSkill(hotSkill), RequiredSkill(eatableSkill), SkillForbidden(freshSkill)),
+        List(OwnedSkill(hotSkill), OwnedSkill(eatableSkill), OwnedSkill(freshSkill)),
         false
       ),
-      (List(SkillRequired(hotSkill), SkillForbidden(freshSkill)), List(SkillOwned(drinkableSkill)), false),
+      (List(RequiredSkill(hotSkill), SkillForbidden(freshSkill)), List(OwnedSkill(drinkableSkill)), false),
       (
         List(
-          SkillOwned(rollingSkill),
-          SkillRequired(hotSkill),
-          SkillRequired(drinkableSkill),
+          OwnedSkill(rollingSkill),
+          RequiredSkill(hotSkill),
+          RequiredSkill(drinkableSkill),
           SkillForbidden(freshSkill)
         ),
         List(
-          SkillOwned(drinkableSkill),
-          SkillRequired(rollingSkill),
-          SkillRequired(hotSkill),
+          OwnedSkill(drinkableSkill),
+          RequiredSkill(rollingSkill),
+          RequiredSkill(hotSkill),
           SkillForbidden(flyingSkill)
         ),
         true
