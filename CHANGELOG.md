@@ -2,8 +2,11 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-More infos about this file : http://keepachangelog.com/
+More info about this file : http://keepachangelog.com/
 
 ## [Unreleased] - no_due_date
-### Added
-- First implementation of skill constraints
+
+### [v1.1.0] -
+- **Prefer composition to inheritance**
+### [v1.0.0] -
+- **First implementation of skill constraints**
