@@ -8,20 +8,20 @@ sealed trait SkillConstraint {
   def matches(constraints: Set[SkillConstraint]): Boolean = true
 }
 
-final case class SkillOwned(override val tag: NonEmptyString) extends SkillConstraint {
+final case class OwnedSkill(override val tag: NonEmptyString) extends SkillConstraint {
   override def `type`: ConstraintType = Owned
 }
 
-final case class SkillRequired(override val tag: NonEmptyString) extends SkillConstraint {
+final case class RequiredSkill(override val tag: NonEmptyString) extends SkillConstraint {
   override def matches(constraints: Set[SkillConstraint]): Boolean =
-    (constraints(SkillOwned(tag)) || constraints(SkillRequired(tag))) && !constraints(SkillForbidden(tag))
+    (constraints(OwnedSkill(tag)) || constraints(RequiredSkill(tag))) && !constraints(SkillForbidden(tag))
 
   override def `type`: ConstraintType = Required
 }
 
 final case class SkillForbidden(override val tag: NonEmptyString) extends SkillConstraint {
   override def matches(constraints: Set[SkillConstraint]): Boolean =
-    !constraints(SkillOwned(tag)) && !constraints(SkillRequired(tag))
+    !constraints(OwnedSkill(tag)) && !constraints(RequiredSkill(tag))
 
   override def `type`: ConstraintType = Forbidden
 }
