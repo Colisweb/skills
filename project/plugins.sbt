@@ -1,5 +1,5 @@
 addSbtPlugin("io.get-coursier"   % "sbt-coursier"  % "1.0.3")
-addSbtPlugin("org.scalameta"     % "sbt-scalafmt"  % "2.0.5")
+addSbtPlugin("org.scalameta"     % "sbt-scalafmt"  % "2.0.6")
 addSbtPlugin("org.scoverage"     % "sbt-scoverage" % "1.6.0")
 addSbtPlugin("com.timushev.sbt"  % "sbt-updates"   % "0.4.2")
 addSbtPlugin("org.foundweekends" % "sbt-bintray"   % "0.5.5")
