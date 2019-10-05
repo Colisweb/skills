@@ -15,7 +15,7 @@ libraryDependencies ++= Seq(
   "org.scalatest"             %% "scalatest"     % "3.0.8" % Test,
   "com.github.writethemfirst" % "approvals-java" % "0.11.1" % Test,
   "com.lihaoyi"               %% "pprint"        % "0.5.5" % Test,
-  "eu.timepit"                %% "refined"       % "0.9.9"
+  "eu.timepit"                %% "refined"       % "0.9.10"
 )
 
 // Uncomment the next 2 lines for auto-approbation
