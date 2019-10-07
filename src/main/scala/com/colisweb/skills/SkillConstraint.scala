@@ -14,12 +14,12 @@ final case class OwnedSkill(override val tag: NonEmptyString) extends SkillConst
 
 final case class RequiredSkill(override val tag: NonEmptyString) extends SkillConstraint {
   override def matches(constraints: Set[SkillConstraint]): Boolean =
-    (constraints(OwnedSkill(tag)) || constraints(RequiredSkill(tag))) && !constraints(SkillForbidden(tag))
+    (constraints(OwnedSkill(tag)) || constraints(RequiredSkill(tag))) && !constraints(ForbiddenSkill(tag))
 
   override def `type`: ConstraintType = Required
 }
 
-final case class SkillForbidden(override val tag: NonEmptyString) extends SkillConstraint {
+final case class ForbiddenSkill(override val tag: NonEmptyString) extends SkillConstraint {
   override def matches(constraints: Set[SkillConstraint]): Boolean =
     !constraints(OwnedSkill(tag)) && !constraints(RequiredSkill(tag))
 
