@@ -14,7 +14,7 @@ libraryDependencies ++= Seq(
   "org.scalactic"             %% "scalactic"     % "3.0.8",
   "org.scalatest"             %% "scalatest"     % "3.1.0" % Test,
   "com.github.writethemfirst" % "approvals-java" % "0.11.1" % Test,
-  "com.lihaoyi"               %% "pprint"        % "0.5.5" % Test,
+  "com.lihaoyi"               %% "pprint"        % "0.5.6" % Test,
   "eu.timepit"                %% "refined"       % "0.9.10"
 )
 
