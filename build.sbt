@@ -11,11 +11,11 @@ scalafmtSbtCheck := true
 resolvers += Resolver.bintrayRepo("writethemfirst", "maven")
 
 libraryDependencies ++= Seq(
-  "org.scalactic"             %% "scalactic"     % "3.0.8",
-  "org.scalatest"             %% "scalatest"     % "3.0.8" % Test,
-  "com.github.writethemfirst" % "approvals-java" % "0.11.1" % Test,
-  "com.lihaoyi"               %% "pprint"        % "0.5.5" % Test,
-  "eu.timepit"                %% "refined"       % "0.9.10"
+  "org.scalactic"             %% "scalactic"     % "3.1.1",
+  "org.scalatest"             %% "scalatest"     % "3.1.1" % Test,
+  "com.github.writethemfirst" % "approvals-java" % "0.13.0" % Test,
+  "com.lihaoyi"               %% "pprint"        % "0.5.9" % Test,
+  "eu.timepit"                %% "refined"       % "0.9.13"
 )
 
 // Uncomment the next 2 lines for auto-approbation
