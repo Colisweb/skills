@@ -1,8 +1,6 @@
 name := "skills"
 organization := "com.colisweb"
-scalaVersion := "2.12.8"
-
-releaseCommitMessage := s"[ci skip] Setting version to ${(version in ThisBuild).value}"
+scalaVersion := "2.12.10"
 
 scalafmtOnCompile := true
 scalafmtCheck := true
@@ -11,7 +9,6 @@ scalafmtSbtCheck := true
 resolvers += Resolver.bintrayRepo("writethemfirst", "maven")
 
 libraryDependencies ++= Seq(
-  "org.scalactic"             %% "scalactic"     % "3.1.1",
   "org.scalatest"             %% "scalatest"     % "3.1.1" % Test,
   "com.github.writethemfirst" % "approvals-java" % "0.13.0" % Test,
   "com.lihaoyi"               %% "pprint"        % "0.5.9" % Test,
