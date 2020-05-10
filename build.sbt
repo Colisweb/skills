@@ -9,7 +9,7 @@ scalafmtSbtCheck := true
 resolvers += Resolver.bintrayRepo("writethemfirst", "maven")
 
 libraryDependencies ++= Seq(
-  "org.scalatest"             %% "scalatest"     % "3.1.1" % Test,
+  "org.scalatest"             %% "scalatest"     % "3.1.2" % Test,
   "com.github.writethemfirst" % "approvals-java" % "0.13.0" % Test,
   "com.lihaoyi"               %% "pprint"        % "0.5.9" % Test,
   "eu.timepit"                %% "refined"       % "0.9.14"
