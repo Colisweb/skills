@@ -14,38 +14,40 @@ final class SkillsSpec extends Approbation {
   import Skills._
   import SkillsSpec._
 
-  "skills" should "test" in { _ =>
-    forAll(data) { (l1, l2, `match`) =>
-      isThereAMatchBetween(l1, l2) should (equal(isThereAMatchBetween(l2, l1)) and equal(`match`))
+  Feature("isThereAMatchBetween") {
+    Scenario("Result") { _ =>
+      forAll(data) { (l1, l2, `match`) =>
+        isThereAMatchBetween(l1, l2) should (equal(isThereAMatchBetween(l2, l1)) and equal(`match`))
+      }
+    }
+
+    Scenario("Approbation") { approver =>
+      val possibleConstraints = List[Set[SkillConstraint]](
+        Set(OwnedSkill(freshSkill)),
+        Set(RequiredSkill(hotSkill)),
+        Set(ForbiddenSkill(freshSkill)),
+        Set(RequiredSkill(freshSkill)),
+        Set(RequiredSkill(freshSkill), RequiredSkill(hotSkill)),
+        Set(OwnedSkill(freshSkill), OwnedSkill(hotSkill)),
+        Set(OwnedSkill(hotSkill), RequiredSkill(freshSkill)),
+        Set.empty
+      )
+
+      val combinations = FunctionUtils.applyCombinations[Set[SkillConstraint], Set[SkillConstraint]](
+        possibleConstraints.asJava,
+        possibleConstraints.asJava,
+        Skills.isThereAMatchBetween
+      )
+      approver.verify(combinations)
     }
   }
 
-  "skillConstraint" should "match" in { _ =>
+  Scenario("skillConstraint should match") { _ =>
     val skillList: List[SkillConstraint] =
       List(SkillConstraint("owned skill", Owned), SkillConstraint("forbidden skill", Forbidden))
     skillList.head.tag.value shouldBe "owned skill"
     skillList.tail.head.`type` shouldBe Forbidden
 
-  }
-
-  "skills" should "match" in { approver =>
-    val possibleConstraints = List[Set[SkillConstraint]](
-      Set(OwnedSkill(freshSkill)),
-      Set(RequiredSkill(hotSkill)),
-      Set(ForbiddenSkill(freshSkill)),
-      Set(RequiredSkill(freshSkill)),
-      Set(RequiredSkill(freshSkill), RequiredSkill(hotSkill)),
-      Set(OwnedSkill(freshSkill), OwnedSkill(hotSkill)),
-      Set(OwnedSkill(hotSkill), RequiredSkill(freshSkill)),
-      Set.empty
-    )
-
-    val combinations = FunctionUtils.applyCombinations[Set[SkillConstraint], Set[SkillConstraint]](
-      possibleConstraints.asJava,
-      possibleConstraints.asJava,
-      Skills.isThereAMatchBetween
-    )
-    approver.verify(combinations)
   }
 
 }

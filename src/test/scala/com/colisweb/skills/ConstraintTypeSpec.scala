@@ -11,7 +11,7 @@ final class ConstraintTypeSpec extends AnyFeatureSpec with Matchers {
     skillList.map(_.toString()) shouldBe List(OWNED, REQUIRED, FORBIDDEN)
   }
 
-  Feature("String to ConstraintType") {
+  Scenario("String to ConstraintType") {
     val stringList = List(OWNED, REQUIRED, FORBIDDEN, "wrong constraint")
     stringList.map(s => ConstraintType.fromString(s)) shouldBe List(Some(Owned), Some(Required), Some(Forbidden), None)
   }

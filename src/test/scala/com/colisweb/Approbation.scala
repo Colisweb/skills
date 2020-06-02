@@ -1,13 +1,14 @@
 package com.colisweb
 
 import com.github.writethemfirst.approvals.approvers.Approver
+import org.scalatest.featurespec.FixtureAnyFeatureSpec
 import org.scalatest.{Outcome, fixture}
 import pprint.PPrinter
 import pprint.PPrinter.BlackWhite
 import org.scalatest.flatspec
 import org.scalatest.matchers.should.Matchers
 
-class Approbation extends flatspec.FixtureAnyFlatSpec with Matchers {
+trait Approbation extends FixtureAnyFeatureSpec with Matchers {
 
   private val approvals  = (new Approver).testing(getClass)
   val prettify: PPrinter = BlackWhite.copy(defaultHeight = Int.MaxValue)
