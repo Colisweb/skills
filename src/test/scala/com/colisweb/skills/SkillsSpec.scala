@@ -5,7 +5,7 @@ import com.github.writethemfirst.approvals.utils.FunctionUtils
 import org.scalatest.prop.TableDrivenPropertyChecks._
 import org.scalatest.prop.TableFor3
 
-import scala.collection.JavaConverters._
+import scala.jdk.CollectionConverters._
 import eu.timepit.refined.auto._
 import eu.timepit.refined.types.string.NonEmptyString
 

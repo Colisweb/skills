@@ -5,11 +5,13 @@ import eu.timepit.refined.types.string.NonEmptyString
 sealed trait SkillConstraint {
   def tag: NonEmptyString
   def `type`: ConstraintType
-  def matches(constraints: Set[SkillConstraint]): Boolean = true
+  def matches(constraints: Set[SkillConstraint]): Boolean
 }
 
 final case class OwnedSkill(override val tag: NonEmptyString) extends SkillConstraint {
   override def `type`: ConstraintType = Owned
+
+  override def matches(constraints: Set[SkillConstraint]): Boolean = true
 }
 
 final case class RequiredSkill(override val tag: NonEmptyString) extends SkillConstraint {

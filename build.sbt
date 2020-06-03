@@ -1,23 +1,37 @@
-name := "skills"
-organization := "com.colisweb"
-scalaVersion := "2.12.10"
+import CompileFlags._
 
+lazy val scala212               = "2.12.11"
+lazy val scala213               = "2.13.1"
+lazy val supportedScalaVersions = List(scala213, scala212)
+
+name := "skills"
+scalaVersion := scala213
+organization := "com.colisweb"
 scalafmtOnCompile := true
 scalafmtCheck := true
 scalafmtSbtCheck := true
+bintrayOrganization := Some("colisweb")
+licenses += ("Apache-2.0", url("http://www.apache.org/licenses/"))
+scalacOptions ++= crossScalacOptions(scalaVersion.value)
+crossScalaVersions := supportedScalaVersions
+
+// Uncomment the next 2 lines for auto-approbation
+//Test / fork := true
+//Test / javaOptions += "-DAUTO_APPROVE=true"
 
 resolvers += Resolver.bintrayRepo("writethemfirst", "maven")
 
 libraryDependencies ++= Seq(
-  "org.scalatest"             %% "scalatest"     % "3.1.2" % Test,
-  "com.github.writethemfirst" % "approvals-java" % "0.13.0" % Test,
-  "com.lihaoyi"               %% "pprint"        % "0.5.9" % Test,
-  "eu.timepit"                %% "refined"       % "0.9.14"
+  CompileTimeDependencies.refined
+) ++ Seq(
+  TestDependencies.approval,
+  TestDependencies.pprint,
+  TestDependencies.scalatest
 )
 
-// Uncomment the next 2 lines for auto-approbation
-//ThisBuild / Test / fork := true
-//ThisBuild / Test / javaOptions += "-DAUTO_APPROVE=true"
 
-bintrayOrganization := Some("colisweb")
-licenses += ("Apache-2.0", url("http://www.apache.org/licenses/"))
+
+
+
+
+
