@@ -14,6 +14,8 @@ final class SkillsSpec extends Approbation {
   import Skills._
   import SkillsSpec._
 
+  val scalaVersion = util.Properties.versionNumberString
+
   Feature("isThereAMatchBetween") {
     Scenario("Result") { _ =>
       forAll(data) { (l1, l2, `match`) =>

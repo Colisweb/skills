@@ -26,6 +26,7 @@ libraryDependencies ++= Seq(
 ) ++ Seq(
   TestDependencies.approval,
   TestDependencies.pprint,
+  TestDependencies.scalaCompat,
   TestDependencies.scalatest
 )
 
