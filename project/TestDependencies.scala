@@ -2,7 +2,7 @@ import sbt._
 
 object TestVersions {
   final lazy val approval    = "0.13.1"
-  final lazy val pprint      = "0.5.9"
+  final lazy val pprint      = "0.6.0"
   final lazy val scalaCompat = "2.1.6"
   final lazy val scalatest   = "3.2.0"
 }
