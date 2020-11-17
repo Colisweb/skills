@@ -4,7 +4,7 @@ object TestVersions {
   final lazy val approval    = "0.13.1"
   final lazy val pprint      = "0.6.0"
   final lazy val scalaCompat = "2.2.0"
-  final lazy val scalatest   = "3.2.2"
+  final lazy val scalatest   = "3.2.3"
 }
 
 object TestDependencies {
