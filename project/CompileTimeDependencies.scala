@@ -1,7 +1,7 @@
 import sbt._
 
 object Versions {
-  final lazy val refined = "0.9.21"
+  final lazy val refined = "0.9.23"
 }
 
 object CompileTimeDependencies {
