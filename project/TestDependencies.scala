@@ -8,8 +8,8 @@ object TestVersions {
 }
 
 object TestDependencies {
-  final lazy val approval    = "com.github.writethemfirst" % "approvals-java"          % TestVersions.approval    % Test
-  final lazy val pprint      = "com.lihaoyi"              %% "pprint"                  % TestVersions.pprint      % Test
-  final lazy val scalaCompat = "org.scala-lang.modules"   %% "scala-collection-compat" % TestVersions.scalaCompat % Test
-  final lazy val scalatest   = "org.scalatest"            %% "scalatest"               % TestVersions.scalatest   % Test
+  final lazy val approval    = "com.colisweb"            % "approvals-java"          % TestVersions.approval    % Test
+  final lazy val pprint      = "com.lihaoyi"            %% "pprint"                  % TestVersions.pprint      % Test
+  final lazy val scalaCompat = "org.scala-lang.modules" %% "scala-collection-compat" % TestVersions.scalaCompat % Test
+  final lazy val scalatest   = "org.scalatest"          %% "scalatest"               % TestVersions.scalatest   % Test
 }

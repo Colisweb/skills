@@ -6,20 +6,18 @@ lazy val supportedScalaVersions = List(scala213, scala212)
 
 name := "skills"
 scalaVersion := scala213
-organization := "com.colisweb"
 scalafmtOnCompile := true
 scalafmtCheck := true
 scalafmtSbtCheck := true
-bintrayOrganization := Some("colisweb")
-licenses += ("Apache-2.0", url("http://www.apache.org/licenses/"))
+ThisBuild / pushRemoteCacheTo := Some(
+  MavenCache("local-cache", baseDirectory.value / sys.env.getOrElse("CACHE_PATH", "sbt-cache"))
+)
 scalacOptions ++= crossScalacOptions(scalaVersion.value)
 crossScalaVersions := supportedScalaVersions
 
 // Uncomment the next 2 lines for auto-approbation
 //Test / fork := true
 //Test / javaOptions += "-DAUTO_APPROVE=true"
-
-resolvers += Resolver.bintrayRepo("writethemfirst", "maven")
 
 libraryDependencies ++= Seq(
   CompileTimeDependencies.refined
